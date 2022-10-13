@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759812485152",
+    "firebase_url": "https://gonbe-house-default-rtdb.firebaseio.com",
+    "project_id": "gonbe-house",
+    "storage_bucket": "gonbe-house.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759812485152:android:a56896978002e7f1d20c45",
+        "android_client_info": {
+          "package_name": "com.example.gonbe_house"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759812485152-9f624gsehn4lfb6325411p80nl4j8k9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpKcJta6fAKu4xttb96gqodJeK6HhEXqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759812485152-9f624gsehn4lfb6325411p80nl4j8k9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
