@@ -79,15 +79,10 @@ class MainActivity : AppCompatActivity() {
                 })
                 myView.iv_post.setOnClickListener(View.OnClickListener {
                     //upload server
-                    myRef.child("posts").push().child("UserUID").setValue(UserUID)
-                    myRef.child("posts").push().child("text").setValue(myView.etPost.text.toString())
-                    myRef.child("posts").push().child("postImage").setValue(DownloadURL)
-
-                    //                myRef.child("posts").push().setValue(
-//                        PostInfo(UserUID!!,
-//                            myView.etPost.text.toString(), DownloadURL!!))
-//
-//                    myView.etPost.setText("")
+                    myRef.child("posts").push().setValue(
+                        PostInfo(UserUID!!,
+                            myView.etPost.text.toString(), DownloadURL!!))
+                    myView.etPost.setText("")
                 })
                 return myView
 //            } else if(mytweet.tweetPersonUID.equals("loading")){
