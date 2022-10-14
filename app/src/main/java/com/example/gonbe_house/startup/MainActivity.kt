@@ -81,9 +81,9 @@ class MainActivity : AppCompatActivity() {
                     myView.etPost.setText("")
                 })
                 return myView
-//            } else if(mytweet.tweetPersonUID.equals("loading")){
-//                var myView=layoutInflater.inflate(R.layout.loading_ticket,null)
-//                return myView
+            } else if(mytweet.tweetPersonUID.equals("loading")){
+                var myView=layoutInflater.inflate(R.layout.loading_ticket,null)
+                return myView
 ////            } else if(mytweet.tweetPersonUID.equals("ads")){
 ////                var myView=layoutInflater.inflate(R.layout.ads_ticket,null)
 ////
@@ -180,6 +180,8 @@ val PICK_IMAGE_CODE=123
 
     var DownloadURL:String?=null
     fun UploadImage(bitmap:Bitmap){
+        ListTweets.add(0,Ticket("0","him","url","loading"))
+        adpater!!.notifyDataSetChanged()
     val storage=FirebaseStorage.getInstance()
     val storgaRef=storage.getReferenceFromUrl("gs://gonbe-house.appspot.com")
     val df=SimpleDateFormat("ddMMyyHHmmss")
@@ -196,7 +198,7 @@ val PICK_IMAGE_CODE=123
     }.addOnSuccessListener { taskSnapshot ->
         DownloadURL= taskSnapshot.storage.downloadUrl.toString()!!
 
-        //ListTweets.removeAt(0)
+        ListTweets.removeAt(0)
         adpater!!.notifyDataSetChanged()
     }
     }
