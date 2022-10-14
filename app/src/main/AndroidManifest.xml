@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.gonbe_house">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -14,7 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gonbe_house">
         <activity
-            android:name=".startup.MainActivity">
+            android:name=".startup.PostActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name=".startup.MainActivity">
         </activity>
         <activity
             android:name=".startup.Login"

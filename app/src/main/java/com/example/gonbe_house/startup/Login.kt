@@ -105,11 +105,15 @@ class Login : AppCompatActivity() {
         var currentUser =mAuth!!.currentUser
 
         if(currentUser!=null) {
-            var intent = Intent(this, MainActivity::class.java)
+            var intent2 = Intent(this, MainActivity::class.java)
+            var intent = Intent(this, PostActivity::class.java)
+
+            intent2.putExtra("email", currentUser.email)
+            intent2.putExtra("uid", currentUser.uid)
             intent.putExtra("email", currentUser.email)
             intent.putExtra("uid", currentUser.uid)
 
-            startActivity(intent)
+            startActivity(intent2)
         }
     }
 
