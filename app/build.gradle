@@ -31,11 +31,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:18.0.0'
     implementation 'com.google.firebase:firebase-database:18.0.0'
     implementation 'com.google.firebase:firebase-storage:18.0.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
     //implementation 'com.google.firebase:firebase-ads:18.0.0'
     implementation 'com.google.firebase:firebase-messaging:18.0.0'
     implementation "com.google.firebase:firebase-iid:17.0.2"
     implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 }
 repositories {
     mavenCentral()

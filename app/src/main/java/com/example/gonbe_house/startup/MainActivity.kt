@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private var database= FirebaseDatabase.getInstance()
     private var myRef=database.reference
 
-    var ListTweets= java.util.ArrayList<Ticket>()
+    var ListTweets= ArrayList<Ticket>()
     var adpater:MyTweetAdpater?=null
     var myemail:String?=null
     var UserUID:String?=null
@@ -46,23 +46,19 @@ class MainActivity : AppCompatActivity() {
         myemail=b.getString("email")
         UserUID=b.getString("uid")
         //Dummy data
-//
     ListTweets.add(Ticket("0","him","url","add"))
-    ListTweets.add(Ticket("0","him","url","hussein"))
-    ListTweets.add(Ticket("0","him","url","hussein"))
-    ListTweets.add(Ticket("0","him","url","hussein"))
 
         adpater= MyTweetAdpater(this,ListTweets)
         lvTweets.adapter=adpater
-//
-//        LoadPost()
+
+        LoadPost()
     }
 
 
     inner class  MyTweetAdpater:BaseAdapter{
-        var listNotesAdpater= java.util.ArrayList<Ticket>()
+        var listNotesAdpater= ArrayList<Ticket>()
         var context:Context?=null
-        constructor(context:Context, listNotesAdpater: java.util.ArrayList<Ticket>):super(){
+        constructor(context:Context, listNotesAdpater: ArrayList<Ticket>):super(){
             this.listNotesAdpater=listNotesAdpater
             this.context=context
         }
@@ -97,35 +93,47 @@ class MainActivity : AppCompatActivity() {
 ////                return myView
             }else{
                 var myView=layoutInflater.inflate(R.layout.tweets_ticket,null)
+                myView.txt_tweet.setText(mytweet.tweetText)
+                myView.txtUserName.setText(mytweet.tweetPersonUID)
+//                myView.tweet_picture.setImageURI(mytweet.tweetImageURL)
+
 //                myView.txt_tweet.text = mytweet.tweetText
 //
 //                //myView.tweet_picture.setImageURI(mytweet.tweetImageURL)
+                Picasso.with(context).load("https://i.imgur.com/DvpvklR.png").into(myView.tweet_picture)
+                //Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(myView.tweet_picture);
 //                Picasso.with(context).load(mytweet.tweetImageURL).into(myView.tweet_picture)
 //
-//
-//                myRef.child("Users").child(mytweet.tweetPersonUID!!)
-//                    .addValueEventListener(object :ValueEventListener{
-//
-//                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-//
-//                            try {
-//
-//                                var td= dataSnapshot!!.value as HashMap<String,Any>
-//
-//                                for(key in td.keys){
-//
-//                                    var userInfo= td[key] as String
-//                                    if(key.equals("ProfileImage")){
-//                                        Picasso.with(context).load(userInfo).into(myView.picture_path)
-//                                    }else{
-//                                        myView.txtUserName.text = userInfo
-//                                    }
-//                                }
-//                            }catch (ex:Exception){}
-//                        }
-//                        override fun onCancelled(p0: DatabaseError) {
-//                        }
-//                    })
+                myRef.child("Users").child(mytweet.tweetPersonUID!!)
+                    .addValueEventListener(object :ValueEventListener{
+
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            try {
+
+                                var td= dataSnapshot!!.value as HashMap<String,Any>
+
+                                for(key in td.keys){
+
+                                    var userInfo= td[key] as String
+                                    if(key.equals("ProfileImage")){
+                                        Picasso.with(context).load(userInfo).into(myView.picture_path)  //ここおおおおお
+                                    }else{
+                                        myView.txtUserName.setText(userInfo)
+                                    }
+
+
+
+                                }
+
+
+//                                adpater!!.notifyDataSetChanged()
+                            }catch (ex:Exception){}
+                        }
+
+                        override fun onCancelled(p0: DatabaseError) {
+
+                        }
+                    })
 
                 return myView
             }
@@ -148,7 +156,7 @@ val PICK_IMAGE_CODE=123
     fun loadImage(){
 
         var intent=Intent(Intent.ACTION_PICK,
-            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent,PICK_IMAGE_CODE)
     }
 
@@ -187,6 +195,9 @@ val PICK_IMAGE_CODE=123
         Toast.makeText(applicationContext,"fail to upload",Toast.LENGTH_LONG).show()
     }.addOnSuccessListener { taskSnapshot ->
         DownloadURL= taskSnapshot.storage.downloadUrl.toString()!!
+
+        //ListTweets.removeAt(0)
+        adpater!!.notifyDataSetChanged()
     }
     }
 
@@ -196,44 +207,36 @@ val PICK_IMAGE_CODE=123
     }
 
 
-//    fun LoadPost(){
-//
-//        myRef.child("posts")
-//            .addValueEventListener(object :ValueEventListener{
-//
-//                override fun onDataChange(dataSnapshot: DataSnapshot) {
-//
-//                    try {
-//
-//                        ListTweets.clear()
-//                        ListTweets.add(Ticket("0","him","url","add"))
+    fun LoadPost(){
+        myRef.child("posts")
+            .addValueEventListener(object :ValueEventListener{
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    try {
+
+                        ListTweets.clear()
+                        ListTweets.add(Ticket("0","him","url","add"))
 //                        ListTweets.add(Ticket("0","him","url","ads"))
-//                        var td= dataSnapshot!!.value as HashMap<String,Any>
-//
-//                        for(key in td.keys){
-//
-//                            var post= td[key] as HashMap<String,Any>
-//
-//                            ListTweets.add(Ticket(key,
-//
-//                                post["text"] as String,
-//                                post["postImage"] as String
-//                                ,post["userUID"] as String))
+                        var td= dataSnapshot!!.value as HashMap<String,Any>
+
+                        for(key in td.keys){
+                            var post= td[key] as HashMap<String,Any>
+                            ListTweets.add(Ticket(key,
+                                post["text"] as String,
+                                post["postImage"] as String ,
+                                post["userUID"] as String))
 //
 //
-//                        }
-//
-//
-//                        adpater!!.notifyDataSetChanged()
-//                    }catch (ex:Exception){}
-//
-//
-//                }
-//
-//                override fun onCancelled(p0: DatabaseError) {
-//
-//                }
-//            })
-//    }
-//
+                        }
+
+
+                        adpater!!.notifyDataSetChanged()
+                    }catch (ex:Exception){}
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+            })
+    }
 }
