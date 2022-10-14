@@ -41,5 +41,20 @@
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.google.com" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="03d75e91-570e-4474-b842-3da325afa3a6" />
+      <option name="name" value="03d75e91-570e-4474-b842-3da325afa3a6" />
+      <option name="url" value="https://maven.google.com" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="3d09e96c-3fdc-48b7-a248-e662ec745d36" />
+      <option name="name" value="3d09e96c-3fdc-48b7-a248-e662ec745d36" />
+      <option name="url" value="http://maven.google.com" />
+    </remote-repository>
   </component>
 </project>

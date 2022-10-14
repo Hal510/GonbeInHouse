@@ -1,4 +1,4 @@
-package com.example.gonbe_house.startup
+package com.example.gonbe_house.Post
 
 class  Ticket{
     var tweetID:String?=null

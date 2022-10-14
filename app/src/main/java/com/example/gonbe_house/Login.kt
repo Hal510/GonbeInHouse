@@ -1,4 +1,4 @@
-package com.example.gonbe_house.startup
+package com.example.gonbe_house
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,14 +12,11 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.example.gonbe_house.R
+import com.example.gonbe_house.Post.PostActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,4 +1,4 @@
-package com.example.gonbe_house.startup
+package com.example.gonbe_house.Post
 
 class  PostInfo{
     var UserUID:String?=null
