@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityCompat
 import com.example.gonbe_house.Post.PostActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -33,6 +34,9 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.hide()
+
         mAuth= FirebaseAuth.getInstance()
 
         ivImagePerson.setOnClickListener( View.OnClickListener {

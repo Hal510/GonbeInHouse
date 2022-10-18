@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/tanuki"
+        android:icon="@drawable/tanukichi"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/tanuki"
+        android:roundIcon="@drawable/tanukichi"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gonbe_house">
         <activity
@@ -42,8 +42,9 @@
                 android:value="" />
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".Login" />
         <activity
-            android:name=".Login"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
