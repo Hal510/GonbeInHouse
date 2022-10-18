@@ -9,7 +9,8 @@
 ・ショッピングカート的機能  
 
 画面概要：
-![流れ](https://user-images.githubusercontent.com/87113276/186770784-9597a6b1-6c16-4abb-aae4-a3db3614fe4b.jpg)
+![Order画面1](https://user-images.githubusercontent.com/87113276/196512093-6f692d52-4a05-41be-bf5e-83aab90c69c1.jpg)
+![Order画面2](https://user-images.githubusercontent.com/87113276/196512106-48b694fc-85c3-481b-acf6-ac4cc9bd70b6.jpg). 
 使用API：  
     platform('com.google.firebase:firebase-bom:30.3.2')  
     'com.google.firebase:firebase-analytics-ktx'  
