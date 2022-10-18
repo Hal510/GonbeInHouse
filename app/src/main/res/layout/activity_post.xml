@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/whitebackground"
-    tools:context="com.example.gonbe_house.Post.PostActivity">
+    tools:context=".Post.PostActivity">
 
     <ListView
         android:id="@+id/lvTweets"

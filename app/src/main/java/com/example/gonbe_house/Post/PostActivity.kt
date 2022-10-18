@@ -7,10 +7,13 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
+import com.example.gonbe_house.MainActivity
 import com.example.gonbe_house.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -39,6 +42,9 @@ class PostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.setTitle("口コミ")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val b: Bundle? = intent.extras
         myemail=b?.getString("email")
@@ -53,6 +59,12 @@ class PostActivity : AppCompatActivity() {
         LoadPost()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     inner class  MyTweetAdpater:BaseAdapter{
         var listNotesAdpater= ArrayList<Ticket>()
