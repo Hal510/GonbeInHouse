@@ -9,8 +9,8 @@
 ・口コミ機能
 
 画面概要：
-![Order画面1](https://user-images.githubusercontent.com/87113276/196512093-6f692d52-4a05-41be-bf5e-83aab90c69c1.jpg)
-![Order画面2](https://user-images.githubusercontent.com/87113276/196512106-48b694fc-85c3-481b-acf6-ac4cc9bd70b6.jpg)
+<img width="989" alt="画面遷移１" src="https://user-images.githubusercontent.com/87113276/199092705-af5145d9-0915-43d7-a10d-1b322f1a0f32.png">
+<img width="989" alt="画面遷移２" src="https://user-images.githubusercontent.com/87113276/199092711-feb47184-89f0-4cd3-a0cf-bf9bf64f5a85.png">
 
     
 コンセプト：家でも楽しめる権兵衛の味
