@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.gonbe_house.MainActivity
 import com.example.gonbe_house.R
+import com.example.gonbe_house.home
 import com.example.gonbe_house.models.GonbeModel
 
-class CategoryListAdapter(val categoryList: List<GonbeModel?>?, val clickListener: MainActivity): RecyclerView.Adapter<CategoryListAdapter.MyViewHolder>() {
+class CategoryListAdapter(val categoryList: List<GonbeModel?>?, val clickListener: home): RecyclerView.Adapter<CategoryListAdapter.MyViewHolder>() {
 
     //ビューホルダー(1行分のレイアウト)を作成
     override fun onCreateViewHolder(
@@ -49,8 +49,6 @@ class CategoryListAdapter(val categoryList: List<GonbeModel?>?, val clickListene
                 .into(thumbImage)
         }
     }
-
-
 
     interface CategoryListClickListener {
         fun onItemClick(gonbeModel: GonbeModel)

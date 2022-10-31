@@ -12,13 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <TextView
             android:id="@+id/tvCustomerDetails"
-            android:layout_width="97dp"
-            android:layout_height="33dp"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
-            android:text="お客様情報"
+            android:text="@string/information"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +32,7 @@
             android:layout_marginTop="05dp"
             android:layout_marginEnd="10dp"
             android:background="@color/white"
-            android:hint="名前"
+            android:hint="@string/name"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +46,7 @@
             android:layout_marginTop="05dp"
             android:layout_marginEnd="10dp"
             android:background="@color/white"
-            android:hint="電話番号"
+            android:hint="@string/phoneNumber"
             android:inputType="number"
             android:maxLength="11"
             android:textSize="24sp"
@@ -63,7 +62,7 @@
             android:layout_marginTop="05dp"
             android:layout_marginEnd="10dp"
             android:background="@color/white"
-            android:hint="受け取り時間"
+            android:hint="@string/ReceiveTime"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,11 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="36dp"
-            android:text="購入商品"
+            android:text="@string/item"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputReceiveTime" />
 
@@ -90,7 +88,6 @@
             android:layout_marginTop="20dp"
             android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTotalItems" />
 
@@ -99,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="お支払い合計"
+            android:text="@string/total"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +108,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cartItemsRecyclerView"
             android:layout_margin="10dp"
-            android:text="0円"
+            android:text="@string/price"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -121,15 +118,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTotal"
-            android:text="注文する"
+            android:text="@string/Order"
             android:textSize="16sp"
             android:textStyle="bold"
             android:gravity="center"
             android:textColor="@color/white"
             android:padding="10dp"
             android:layout_margin="10dp"
-            android:background="@drawable/button_bg2"
-            />
+            android:background="@drawable/button_bg2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

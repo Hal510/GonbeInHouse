@@ -97,13 +97,6 @@ class PostActivity : AppCompatActivity() {
             } else if(mytweet.tweetPersonUID.equals("loading")){
                 var myView=layoutInflater.inflate(R.layout.loading_ticket,null)
                 return myView
-////            } else if(mytweet.tweetPersonUID.equals("ads")){
-////                var myView=layoutInflater.inflate(R.layout.ads_ticket,null)
-////
-////                var mAdView = myView.findViewById(R.id.adView) as AdView
-////                val adRequest = AdRequest.Builder().build()
-////                mAdView.loadAd(adRequest)
-////                return myView
             }else{
                 var myView=layoutInflater.inflate(R.layout.tweets_ticket,null)
                 myView.txt_tweet.setText(mytweet.tweetText)
@@ -122,32 +115,21 @@ class PostActivity : AppCompatActivity() {
 
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             try {
-
                                 var td= dataSnapshot!!.value as HashMap<String,Any>
 
                                 for(key in td.keys){
-
                                     var userInfo= td[key] as String
                                     if(key.equals("ProfileImage")){
                                         Picasso.with(context).load(userInfo).into(myView.picture_path)  //ここおおおおお
                                     }else{
                                         myView.txtUserName.setText(userInfo)
                                     }
-
-
-
                                 }
-
-
-//                                adpater!!.notifyDataSetChanged()
                             }catch (ex:Exception){}
                         }
-
                         override fun onCancelled(p0: DatabaseError) {
-
                         }
                     })
-
                 return myView
             }
         }
@@ -161,13 +143,11 @@ class PostActivity : AppCompatActivity() {
         override fun getCount(): Int {
             return listNotesAdpater.size
         }
-
     }
 
     //    //Load image
     val PICK_IMAGE_CODE=123
     fun loadImage(){
-
         var intent3=Intent(Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent3,PICK_IMAGE_CODE)
@@ -177,7 +157,6 @@ class PostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode==PICK_IMAGE_CODE  && data!=null && resultCode == RESULT_OK){
-
             val selectedImage=data.data
             val filePathColum= arrayOf(MediaStore.Images.Media.DATA)
             val cursor= contentResolver.query(selectedImage!!,filePathColum,null,null,null)
@@ -187,7 +166,6 @@ class PostActivity : AppCompatActivity() {
             cursor!!.close()
             UploadImage(BitmapFactory.decodeFile(picturePath))
         }
-
     }
 
 
@@ -203,7 +181,6 @@ class PostActivity : AppCompatActivity() {
             //SplitString(myemail!!.toString()) + "."+
                     df.format(dataobj)+ ".jpg"
         val ImageRef=storgaRef.child("imagePost/"+imagePath )
-
         val baos=ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
         val data= baos.toByteArray()
@@ -218,10 +195,10 @@ class PostActivity : AppCompatActivity() {
         }
     }
 
-    fun SplitString(email:String):String{
-        val split= email.split("@")
-        return split[0]
-    }
+//    fun SplitString(email:String):String{
+//        val split= email.split("@")
+//        return split[0]
+//    }
 
 
     fun LoadPost(){
@@ -230,10 +207,8 @@ class PostActivity : AppCompatActivity() {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     try {
-
                         ListTweets.clear()
                         ListTweets.add(Ticket("0","him","url","add"))
-//                        ListTweets.add(Ticket("0","him","url","ads"))
                         var td= dataSnapshot!!.value as HashMap<String,Any>
 
                         for(key in td.keys){
@@ -242,17 +217,12 @@ class PostActivity : AppCompatActivity() {
                                 post["text"] as String,
                                 post["postImage"] as String ,
                                 post["userUID"] as String))
-//
-//
                         }
-
 
                         adpater!!.notifyDataSetChanged()
                     }catch (ex:Exception){}
                 }
-
                 override fun onCancelled(p0: DatabaseError) {
-
                 }
             })
     }

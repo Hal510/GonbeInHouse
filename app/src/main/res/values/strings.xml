@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">権兵衛オーダー</string>
+    <string name="bottomItem1">ホーム</string>
+    <string name="bottomItem2">口コミ</string>
+    <string name="bottomItem3">設定</string>
+    <string name="etEmail">emailを入力してください</string>
+    <string name="etPass">パスワードを入力してください</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="受取時間">(受取時間 17:00 ~ 21:00)</string>
+    <string name="営業時間">営業時間 17:00 ~ 23:00</string>
+    <string name="SuccessOrder">あなたの注文は完了しました</string>
+    <string name="back">戻る</string>
+    <string name="name">お名前</string>
+    <string name="ReceiveTime">受け取り時間</string>
+    <string name="information">お客様の情報</string>
+    <string name="phoneNumber">電話番号</string>
+    <string name="item">購入商品</string>
+    <string name="total">支払い合計金額</string>
+    <string name="price">０円</string>
+    <string name="Order">注文する</string>
+    <string name="goCart">カートに追加</string>
+
+    <string name="Tweet">チーズボール美味しい！！</string>
+
+    <string name="settingButton1">プロフィール編集</string>
+    <string name="settingButtou2">問い合わせ</string>
+    <string name="settingButton3">ログアウト</string>
+
+
 </resources>

@@ -22,8 +22,6 @@ import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-
 class Login : AppCompatActivity() {
 
     private var mAuth:FirebaseAuth?=null
@@ -42,20 +40,15 @@ class Login : AppCompatActivity() {
         ivImagePerson.setOnClickListener( View.OnClickListener {
             checkPermission()
         })
-
-//        FirebaseMessaging.getInstance().subscribeToTopic("news")
-
     }
 
     fun LoginToFireBase(email:String,password:String){
-
         mAuth!!.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(this){ task ->
 
                 if (task.isSuccessful){
                     Toast.makeText(applicationContext,"Successful login",Toast.LENGTH_LONG).show()
                     SaveImageInFirebase()
-
                 }else {
                     Toast.makeText(applicationContext,"fail login",Toast.LENGTH_LONG).show()
                 }
@@ -73,7 +66,6 @@ class Login : AppCompatActivity() {
         val ImageRef=storgaRef.child("images/"+imagePath )
         ivImagePerson.isDrawingCacheEnabled=true
         ivImagePerson.buildDrawingCache()
-
         val drawable=ivImagePerson.drawable as BitmapDrawable
         val bitmap=drawable.bitmap
         val baos=ByteArrayOutputStream()
@@ -89,7 +81,6 @@ class Login : AppCompatActivity() {
             myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(DownloadURL)
             LoadTweets()
         }
-
     }
 
     fun SplitString(email:String):String{
@@ -106,13 +97,23 @@ class Login : AppCompatActivity() {
         var currentUser =mAuth!!.currentUser
 
         if(currentUser!=null) {
+//PostFragmentに変える時に必要？
+//            val args = Bundle()
+//            args.putString("email", currentUser.email)
+//            args.putString("uid", currentUser.uid)
+//            val fragment = post()
+//            fragment.setArguments(args)
+
             var intent2 = Intent(this, MainActivity::class.java)
             var intent = Intent(this, PostActivity::class.java)
+//            var intent3 = Intent(this, post::class.java)
 
             intent2.putExtra("email", currentUser.email)
             intent2.putExtra("uid", currentUser.uid)
             intent.putExtra("email", currentUser.email)
             intent.putExtra("uid", currentUser.uid)
+//            intent3.putExtra("email", currentUser.email)
+//            intent3.putExtra("uid", currentUser.uid)
 
             startActivity(intent2)
         }
@@ -120,28 +121,24 @@ class Login : AppCompatActivity() {
 
     val READIMAGE:Int=253
     fun checkPermission(){
-
         if(Build.VERSION.SDK_INT>=23){
             if(ActivityCompat.checkSelfPermission(this,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE)!=
                 PackageManager.PERMISSION_GRANTED){
-
                 requestPermissions(arrayOf( android.Manifest.permission.READ_EXTERNAL_STORAGE),READIMAGE)
                 return
             }
         }
-
         loadImage()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-
         when(requestCode){
             READIMAGE->{
                 if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
                     loadImage()
                 }else{
-                    Toast.makeText(applicationContext,"Cannot access your images",Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"画像にアクセス出来ません",Toast.LENGTH_LONG).show()
                 }
             }
             else-> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -160,7 +157,6 @@ class Login : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode==PICK_IMAGE_CODE  && data!=null && resultCode == RESULT_OK){
-
             val selectedImage=data.data
             val filePathColum= arrayOf(MediaStore.Images.Media.DATA)
             val cursor= contentResolver.query(selectedImage!!,filePathColum,null,null,null)

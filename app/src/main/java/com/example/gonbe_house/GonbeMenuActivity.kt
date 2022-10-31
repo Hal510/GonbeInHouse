@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.gonbe_house.R
 import com.example.gonbe_house.adapter.MenuListAdapter
 import com.example.gonbe_house.models.Menus
 import com.example.gonbe_house.models.GonbeModel
@@ -45,8 +44,8 @@ class GonbeMenuActivity : AppCompatActivity(), MenuListAdapter.MenuListClickList
                 startActivityForResult(intent, 1000)
             }
         }
-
     }
+
     private fun initRecyclerView(menus: List<Menus?>?) {
         //１行２メニューずつ表示
         menuRecyclerView.layoutManager = GridLayoutManager(this, 3)
@@ -64,7 +63,6 @@ class GonbeMenuActivity : AppCompatActivity(), MenuListAdapter.MenuListClickList
             totalItemInCartCount = totalItemInCartCount + menu?.totalInCart!!
         }
         checkoutButton.text = "(" + totalItemInCartCount +")つのアイテムを注文"
-
     }
 
     override fun updateCartClickListener(menu: Menus) {

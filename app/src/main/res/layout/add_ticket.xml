@@ -7,12 +7,12 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:gravity="center"
-    android:background="@color/water"
+    android:background="@color/blue"
     android:layoutDirection="rtl"
     android:textAlignment="center"
     android:focusable="false"
-    android:focusableInTouchMode="false"
-    >
+    android:focusableInTouchMode="false">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -25,12 +25,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:paddingRight="5dp"
-        android:background="@drawable/background"
+        android:background="@drawable/background_grey"
         android:paddingTop="2dp"
-        android:paddingBottom="1dp"
-
-        >
-
+        android:paddingBottom="1dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -38,42 +35,37 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/etPost"
-            android:hint="What you think?" />
-
+            android:hint="@string/Tweet" />
 
         <LinearLayout
-
             android:paddingLeft="10dp"
             android:paddingRight="3dp"
             android:paddingTop="3dp"
             android:paddingBottom="5dp"
             android:layoutDirection="ltr"
             android:orientation="horizontal"
-            android:background="@drawable/background"
+            android:background="@drawable/background_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:id="@+id/iv_post"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/ic_send_black_24dp" />
             <ImageView
-
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:id="@+id/iv_attach"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/ic_attach_file_black_24dp" />
-
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></LinearLayout>
-
+            android:layout_height="match_parent">
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

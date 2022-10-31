@@ -28,8 +28,6 @@ class YourOrderActivity : AppCompatActivity() {
         buttonYourOrder.setOnClickListener {
             onOrderButtonCLick(gonbeModel)
         }
-
-
         isDeliveryOn = true
         calculateTotalAmount(gonbeModel)
 
