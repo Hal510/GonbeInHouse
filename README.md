@@ -1,7 +1,7 @@
 # 権兵衛オーダー
 
-対象OS：Android  
-開発環境/言語：Android Studio Dolphin | 2021.3.1 /  Kotlin  
+対象OS：Android　12  
+開発環境/言語：Android Studio Dolphin | 2021.3.1 /  Kotlin 1.7.20  
 
 機能概要：実際に注文は出来ないが、居酒屋権兵衛のテイクアウトや口コミ投稿がスマホで出来る。  
 ・ログイン機能  
@@ -9,13 +9,14 @@
 ・口コミ機能
 
 画面概要：
+・アカウント登録画面  ・注文画面  ・口コミ画面  ・設定風画面  
 <img width="989" alt="画面遷移１" src="https://user-images.githubusercontent.com/87113276/199092705-af5145d9-0915-43d7-a10d-1b322f1a0f32.png">
 <img width="989" alt="画面遷移２" src="https://user-images.githubusercontent.com/87113276/199092711-feb47184-89f0-4cd3-a0cf-bf9bf64f5a85.png">
 
     
-コンセプト：家でも楽しめる権兵衛の味
+コンセプト：権兵衛の味を家でも楽しめる。
 
-こだわったポイント：Firebaseを使い、ログイン機能やデータベースを作れた。
+こだわったポイント：Firebaseを使い、データベースやログイン機能を作成した。
 
 デザイン面でこだわったポイント：色合いやボタンで統一性を出した。また、カートに入れたら表示される個数の追加・削除ボタンなども実装出来た。
 
