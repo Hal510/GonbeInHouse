@@ -1,5 +1,6 @@
 package com.example.gonbe_house
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -53,6 +54,7 @@ class GonbeMenuActivity : AppCompatActivity(), MenuListAdapter.MenuListClickList
         menuRecyclerView.adapter =menuListAdapter
     }
 
+    @SuppressLint("SetTextI18n")
     override fun addToCartClickListener(menu: Menus) {
         if(itemsInTheCartList == null) {
             itemsInTheCartList = ArrayList()
@@ -62,9 +64,10 @@ class GonbeMenuActivity : AppCompatActivity(), MenuListAdapter.MenuListClickList
         for(menu in itemsInTheCartList!!) {
             totalItemInCartCount = totalItemInCartCount + menu?.totalInCart!!
         }
-        checkoutButton.text = "(" + totalItemInCartCount +")つのアイテムを注文"
+        checkoutButton.text = "($totalItemInCartCount)つのアイテムを注文"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun updateCartClickListener(menu: Menus) {
         val index = itemsInTheCartList!!.indexOf(menu)
         itemsInTheCartList?.removeAt(index)
@@ -73,9 +76,10 @@ class GonbeMenuActivity : AppCompatActivity(), MenuListAdapter.MenuListClickList
         for(menu in itemsInTheCartList!!) {
             totalItemInCartCount = totalItemInCartCount + menu?.totalInCart!!
         }
-        checkoutButton.text = "(" + totalItemInCartCount +")つのアイテムを注文"
+        checkoutButton.text = "($totalItemInCartCount)つのアイテムを注文"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun removeFromCartClickListener(menu: Menus) {
         if(itemsInTheCartList!!.contains(menu)) {
             itemsInTheCartList?.remove(menu)
@@ -83,7 +87,7 @@ class GonbeMenuActivity : AppCompatActivity(), MenuListAdapter.MenuListClickList
             for(menu in itemsInTheCartList!!) {
                 totalItemInCartCount = totalItemInCartCount + menu?.totalInCart!!
             }
-            checkoutButton.text = "(" + totalItemInCartCount +")つのアイテムを注文"
+            checkoutButton.text = "($totalItemInCartCount)つのアイテムを注文"
         }
     }
 

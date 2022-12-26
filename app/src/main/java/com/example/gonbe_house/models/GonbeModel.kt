@@ -11,8 +11,7 @@ data class GonbeModel(val name: String?, val image: String?,
         parcel.readString(),
         parcel.readString(),
         parcel.createTypedArrayList(Menus)
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
@@ -42,8 +41,7 @@ data class Menus(val name: String?, val price: Int,  val url: String?, var total
         parcel.readInt(),
         parcel.readString(),
         parcel.readInt()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)

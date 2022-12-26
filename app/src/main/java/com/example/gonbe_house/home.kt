@@ -64,7 +64,7 @@ class home : Fragment() {
             while (reader.read(buffer).also { n = it } != -1) {
                 writer.write(buffer, 0, n)
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
         val jsonStr: String = writer.toString()
         val gson = Gson()

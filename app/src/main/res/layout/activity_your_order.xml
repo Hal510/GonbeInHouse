@@ -10,7 +10,7 @@
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvCustomerDetails"
@@ -52,7 +52,8 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputName" />
+            app:layout_constraintTop_toBottomOf="@id/inputName"
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/inputReceiveTime"

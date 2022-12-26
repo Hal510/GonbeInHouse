@@ -1,5 +1,6 @@
 package com.example.gonbe_house
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -9,7 +10,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityCompat
@@ -37,9 +37,9 @@ class Login : AppCompatActivity() {
 
         mAuth= FirebaseAuth.getInstance()
 
-        ivImagePerson.setOnClickListener( View.OnClickListener {
+        ivImagePerson.setOnClickListener {
             checkPermission()
-        })
+        }
     }
 
     fun LoginToFireBase(email:String,password:String){
@@ -55,8 +55,9 @@ class Login : AppCompatActivity() {
             }
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun SaveImageInFirebase(){
-        var currentUser =mAuth!!.currentUser
+        val currentUser =mAuth!!.currentUser
         val email:String=currentUser!!.email.toString()
         val storage=FirebaseStorage.getInstance()
         val storgaRef=storage.getReferenceFromUrl("gs://gonbe-house.appspot.com")
@@ -75,7 +76,7 @@ class Login : AppCompatActivity() {
         uploadTask.addOnFailureListener{
             Toast.makeText(applicationContext,"fail to upload",Toast.LENGTH_LONG).show()
         }.addOnSuccessListener { taskSnapshot ->
-            var DownloadURL= taskSnapshot.storage.downloadUrl.toString()!!
+            val DownloadURL= taskSnapshot.storage.downloadUrl.toString()
 
             myRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
             myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(DownloadURL)
@@ -94,7 +95,7 @@ class Login : AppCompatActivity() {
     }
 
     fun LoadTweets(){
-        var currentUser =mAuth!!.currentUser
+        val currentUser =mAuth!!.currentUser
 
         if(currentUser!=null) {
 //PostFragmentに変える時に必要？
@@ -104,8 +105,8 @@ class Login : AppCompatActivity() {
 //            val fragment = post()
 //            fragment.setArguments(args)
 
-            var intent2 = Intent(this, MainActivity::class.java)
-            var intent = Intent(this, PostActivity::class.java)
+            val intent2 = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, PostActivity::class.java)
 //            var intent3 = Intent(this, post::class.java)
 
             intent2.putExtra("email", currentUser.email)
@@ -148,11 +149,12 @@ class Login : AppCompatActivity() {
     val PICK_IMAGE_CODE=123
     fun loadImage(){
 
-        var intent=Intent(Intent.ACTION_PICK,
-            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val intent=Intent(Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent,PICK_IMAGE_CODE)
     }
 
+    @SuppressLint("Recycle")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -161,15 +163,15 @@ class Login : AppCompatActivity() {
             val filePathColum= arrayOf(MediaStore.Images.Media.DATA)
             val cursor= contentResolver.query(selectedImage!!,filePathColum,null,null,null)
             cursor!!.moveToFirst()
-            val coulomIndex=cursor!!.getColumnIndex(filePathColum[0])
-            val picturePath=cursor!!.getString(coulomIndex)
-            cursor!!.close()
+            val coulomIndex=cursor.getColumnIndex(filePathColum[0])
+            val picturePath=cursor.getString(coulomIndex)
+            cursor.close()
             ivImagePerson.setImageBitmap(BitmapFactory.decodeFile(picturePath))
         }
 
     }
 
-    fun buLogin(view:View){
+    fun buLogin() {
         LoginToFireBase(etEmail.text.toString(),etEmail.text.toString())
     }
 }

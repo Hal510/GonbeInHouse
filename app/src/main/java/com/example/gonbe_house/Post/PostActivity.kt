@@ -1,5 +1,6 @@
 package com.example.gonbe_house.Post
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -66,20 +67,17 @@ class PostActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    inner class  MyTweetAdpater:BaseAdapter{
-        var listNotesAdpater= ArrayList<Ticket>()
-        var context:Context?=null
-        constructor(context:Context, listNotesAdpater: ArrayList<Ticket>):super(){
-            this.listNotesAdpater=listNotesAdpater
-            this.context=context
-        }
+    inner class  MyTweetAdpater(context: Context, var listNotesAdpater: ArrayList<Ticket>) :
+        BaseAdapter() {
+        var context:Context?= context
 
+        @SuppressLint("InflateParams")
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
-            var mytweet=listNotesAdpater[p0]
+            val mytweet=listNotesAdpater[p0]
 
             if(mytweet.tweetPersonUID.equals("add")) {
-                var myView = layoutInflater.inflate(R.layout.add_ticket, null)
+                val myView = layoutInflater.inflate(R.layout.add_ticket, null)
 
                 myView.iv_attach.setOnClickListener(View.OnClickListener {
                     loadImage()
@@ -95,10 +93,10 @@ class PostActivity : AppCompatActivity() {
                 })
                 return myView
             } else if(mytweet.tweetPersonUID.equals("loading")){
-                var myView=layoutInflater.inflate(R.layout.loading_ticket,null)
+                val myView=layoutInflater.inflate(R.layout.loading_ticket,null)
                 return myView
             }else{
-                var myView=layoutInflater.inflate(R.layout.tweets_ticket,null)
+                val myView=layoutInflater.inflate(R.layout.tweets_ticket,null)
                 myView.txt_tweet.setText(mytweet.tweetText)
                 myView.txtUserName.setText(mytweet.tweetPersonUID)
 //                myView.tweet_picture.setImageURI(mytweet.tweetImageURL)
@@ -115,17 +113,17 @@ class PostActivity : AppCompatActivity() {
 
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             try {
-                                var td= dataSnapshot!!.value as HashMap<String,Any>
+                                val td= dataSnapshot.value as HashMap<*, *>
 
                                 for(key in td.keys){
-                                    var userInfo= td[key] as String
+                                    val userInfo= td[key] as String
                                     if(key.equals("ProfileImage")){
                                         Picasso.with(context).load(userInfo).into(myView.picture_path)  //ここおおおおお
                                     }else{
                                         myView.txtUserName.setText(userInfo)
                                     }
                                 }
-                            }catch (ex:Exception){}
+                            }catch (_:Exception){}
                         }
                         override fun onCancelled(p0: DatabaseError) {
                         }
@@ -148,11 +146,12 @@ class PostActivity : AppCompatActivity() {
     //    //Load image
     val PICK_IMAGE_CODE=123
     fun loadImage(){
-        var intent3=Intent(Intent.ACTION_PICK,
+        val intent3=Intent(Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent3,PICK_IMAGE_CODE)
     }
 
+    @SuppressLint("Recycle")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -161,15 +160,16 @@ class PostActivity : AppCompatActivity() {
             val filePathColum= arrayOf(MediaStore.Images.Media.DATA)
             val cursor= contentResolver.query(selectedImage!!,filePathColum,null,null,null)
             cursor!!.moveToFirst()
-            val coulomIndex=cursor!!.getColumnIndex(filePathColum[0])
-            val picturePath=cursor!!.getString(coulomIndex)
-            cursor!!.close()
+            val coulomIndex=cursor.getColumnIndex(filePathColum[0])
+            val picturePath=cursor.getString(coulomIndex)
+            cursor.close()
             UploadImage(BitmapFactory.decodeFile(picturePath))
         }
     }
 
 
     var DownloadURL:String?=null
+    @SuppressLint("SimpleDateFormat")
     fun UploadImage(bitmap:Bitmap){
         ListTweets.add(0,Ticket("0","him","url","loading"))
         adpater!!.notifyDataSetChanged()
@@ -188,7 +188,7 @@ class PostActivity : AppCompatActivity() {
         uploadTask.addOnFailureListener{
             Toast.makeText(applicationContext,"fail to upload",Toast.LENGTH_LONG).show()
         }.addOnSuccessListener { taskSnapshot ->
-            DownloadURL= taskSnapshot.storage.downloadUrl.toString()!!
+            DownloadURL= taskSnapshot.storage.downloadUrl.toString()
 
             ListTweets.removeAt(0)
             adpater!!.notifyDataSetChanged()
@@ -209,10 +209,10 @@ class PostActivity : AppCompatActivity() {
                     try {
                         ListTweets.clear()
                         ListTweets.add(Ticket("0","him","url","add"))
-                        var td= dataSnapshot!!.value as HashMap<String,Any>
+                        val td= dataSnapshot.value as HashMap<String,Any>
 
                         for(key in td.keys){
-                            var post= td[key] as HashMap<String,Any>
+                            val post= td[key] as HashMap<String,Any>
                             ListTweets.add(Ticket(key,
                                 post["text"] as String,
                                 post["postImage"] as String ,
@@ -220,7 +220,7 @@ class PostActivity : AppCompatActivity() {
                         }
 
                         adpater!!.notifyDataSetChanged()
-                    }catch (ex:Exception){}
+                    }catch (_:Exception){}
                 }
                 override fun onCancelled(p0: DatabaseError) {
                 }

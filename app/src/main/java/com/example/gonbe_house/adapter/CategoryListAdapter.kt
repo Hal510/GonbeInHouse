@@ -49,9 +49,4 @@ class CategoryListAdapter(val categoryList: List<GonbeModel?>?, val clickListene
                 .into(thumbImage)
         }
     }
-
-    interface CategoryListClickListener {
-        fun onItemClick(gonbeModel: GonbeModel)
-    }
-
 }

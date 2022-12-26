@@ -1,5 +1,6 @@
 package com.example.gonbe_house
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,10 +42,11 @@ class YourOrderActivity : AppCompatActivity() {
         cartItemsRecyclerView.adapter =YourOrderAdapter
     }
 
+    @SuppressLint("SetTextI18n")
     private fun calculateTotalAmount(gonbeModel: GonbeModel?) {
         var TotalAmount = 0
         for(menu in gonbeModel?.menus!!) {
-            TotalAmount += menu?.price!!  * menu?.totalInCart!!
+            TotalAmount += menu?.price!!  * menu.totalInCart
         }
 
         tvTotalAmount.text = String.format("%d", TotalAmount) + "円"

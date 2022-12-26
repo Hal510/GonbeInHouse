@@ -1,5 +1,6 @@
 package com.example.gonbe_house.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,14 +34,15 @@ class YourOrderAdapter(val menuList: List<Menus?>?): RecyclerView.Adapter<YourOr
         val menuQty: TextView = view.findViewById(R.id.menuQty)
         val menuPrice: TextView = view.findViewById(R.id.menuPrice)
 
+        @SuppressLint("SetTextI18n")
         fun bind(menu: Menus) {
-            menuName.text  = menu?.name!!
-            menuQty.text   = "数量 :" + menu?.totalInCart
-            menuPrice.text = "合計価格 :" + String.format("%d円",menu?.price * menu.totalInCart)
+            menuName.text  = menu.name!!
+            menuQty.text   = "数量 :" + menu.totalInCart
+            menuPrice.text = "合計価格 :" + String.format("%d円",menu.price * menu.totalInCart)
 
 
             Glide.with(thumbImage)
-                .load(menu?.url)
+                .load(menu.url)
                 .into(thumbImage)
         }
     }

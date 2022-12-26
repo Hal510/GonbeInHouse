@@ -1,5 +1,6 @@
 package com.example.gonbe_house.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,24 +42,25 @@ class MenuListAdapter(val menuList: List<Menus?>?, val clickListener: MenuListCl
         val imageAddOne: ImageView = view.imageAddOne
         val tvCount:     TextView = view.tvCount
 
+        @SuppressLint("SetTextI18n")
         fun bind(menus: Menus) {
-            menuName.text = menus?.name
-            menuPrice.text = "価格:  ${menus?.price}円"
+            menuName.text = menus.name
+            menuPrice.text = "価格:  ${menus.price}円"
 
             addToCartButton.setOnClickListener {
-                menus?.totalInCart = 1
+                menus.totalInCart = 1
                 clickListener.addToCartClickListener(menus)
-                addMoreLayout?.visibility = View.VISIBLE
+                addMoreLayout.visibility = View.VISIBLE
                 addToCartButton.visibility = View.GONE
-                tvCount.text = menus?.totalInCart.toString()
+                tvCount.text = menus.totalInCart.toString()
             }
             imageMinus.setOnClickListener {
-                var total: Int = menus?.totalInCart
+                var total: Int = menus.totalInCart
                 total--
                 if (total > 0) {
-                    menus?.totalInCart = total
+                    menus.totalInCart = total
                     clickListener.updateCartClickListener(menus)
-                    tvCount.text = menus?.totalInCart.toString()
+                    tvCount.text = menus.totalInCart.toString()
                 } else {
                     menus.totalInCart = total
                     clickListener.removeFromCartClickListener(menus)
@@ -67,7 +69,7 @@ class MenuListAdapter(val menuList: List<Menus?>?, val clickListener: MenuListCl
                 }
             }
             imageAddOne.setOnClickListener {
-                var total: Int = menus?.totalInCart
+                var total: Int = menus.totalInCart
                 total++
                 if (total <= 10) {
                     menus.totalInCart = total
@@ -76,7 +78,7 @@ class MenuListAdapter(val menuList: List<Menus?>?, val clickListener: MenuListCl
                 }
             }
             Glide.with(thumbImage)
-                .load(menus?.url)
+                .load(menus.url)
                 .into(thumbImage)
         }
     }
